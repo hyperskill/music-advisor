@@ -1,0 +1,25 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+group 'org.hyperskill.musicadvisor'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+mainClassName = 'org.hyperskill.musicadvisor.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.google.code.gson:gson:+'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class' : 'org.hyperskill.musicadvisor.Main'
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
